@@ -15,7 +15,7 @@ ARTIK Cloud API and ARTIK module connectivity test
 - ipTime A3004NS-d (support Android phone usb tethering)
 - Bluetooth Speaker
 
-#### Software
+#### Software - Initial setup
 - Install dependency packages to each ARTIK 710 boards
 ```sh
 # dnf update
@@ -146,6 +146,16 @@ Slave board (front door simulation)
 - Press 'link button' on the Hue bridge
 - Click 'Get registered username' and 'Save'
 
+## Using the DemoKit
+
+### Scenario #1
+
+- Dingdong --> Press MIC btn --> say 'ask artik to open the door' --> Release MIC btn
+
+### Scenario #2
+
+- ...
+
 ## Open-source libraries used
 - [Bootstrap](http://getbootstrap.com/) - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 - [Bootstrap Switch](http://www.bootstrap-switch.org/)
@@ -156,5 +166,6 @@ Slave board (front door simulation)
 - [RTSP server based on GStreamer](https://github.com/GStreamer/gst-rtsp-server)
 - [SVOX TTS](http://packages.ubuntu.com/xenial/libttspico-utils)
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details
+## License and Copyright
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
