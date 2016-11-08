@@ -103,13 +103,15 @@ ARTIK710 # reset
 # cd demokit
 # npm install
 
-# npm install -g forever
+# npm install -g forever forever-service
 
 Master board (indoor simulation)
-# forever start bin/www
+# forever-service install master --script bin/www
+# service start master
 
 Slave board (front door simulation)
-# forever start slave.js
+# forever-service install slave --script slave.js
+# service start slave
 
 # reboot
 ```
