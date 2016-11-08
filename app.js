@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016 Samsung Electronics Co., Ltd.
  *
- * Licensed uner the MIT License
+ * Licensed under the MIT License
  */
 'use strict'
 
