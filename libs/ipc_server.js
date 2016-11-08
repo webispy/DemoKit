@@ -104,6 +104,13 @@ slave.on('connection', function (socket) {
     web.emit('log', data)
   })
 
+  socket.on('status', function (data) {
+    console.log(data)
+    if (data.wemo) {
+      settings.data.wemo = data.wemo
+    }
+  })
+
   socket.emit('config', settings.config)
   sendLog('slave connected: ', socket.conn.remoteAddress)
   updateStatus()
