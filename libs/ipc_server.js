@@ -42,7 +42,7 @@ web.on('connection', function (socket) {
   /* Send current status */
   socket.emit('settings', settings)
   if (Object.keys(slave.sockets).length > 0) {
-    sendLog('slave already connected')
+    sendLog('slave already connected:', slave.sockets[Object.keys(slave.sockets)[0]].conn.remoteAddress)
     socket.emit('slave_status', 1)
   } else {
     sendLog('slave not ready')
