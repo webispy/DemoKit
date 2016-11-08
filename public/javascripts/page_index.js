@@ -87,6 +87,12 @@ $(function () {
     } else {
       $('#hue_status').html('unknown status')
     }
+
+    if (msg.data.wemo) {
+      $('#wemo_status').html(msg.data.wemo)
+    } else {
+      $('#wemo_status').html('unknown status')
+    }
   })
 
   socket.on('gpio', function (data) {
