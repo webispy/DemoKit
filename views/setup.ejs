@@ -1,0 +1,201 @@
+<%- include header.ejs %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Alexa Voice Service</div>
+  <div class="panel-body">
+
+    <form class="form-horizontal" id="form_avs_info" method="post" action="/avs/info">
+      <div class="form-group">
+        <label class="control-label col-xs-3">Client ID</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text name="client_id" value="<%= demokit.config.avs.client_id %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Client Secret</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text name="client_secret" value="<%= demokit.config.avs.client_secret %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Device Type ID</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text name="device_type_id" value="<%= demokit.config.avs.device_type_id %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Redirect URL</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text readonly value="<%= demokit.config.avs.redirect_url %>"></input>
+        </div>
+      </div>
+    </form>
+
+    <div class="btn-group pull-right" role="group">
+      <button onclick="$('#form_avs_info').submit();" class="btn btn-default">Save</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">ARTIK Cloud</div>
+  <div class="panel-body">
+
+    <form class="form-horizontal" id="form_akc_info" method="post" action="/akc/info">
+      <div class="form-group">
+        <label class="control-label col-xs-3">Client ID</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="client_id" type=text value="<%= demokit.config.artikcloud.client_id %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Client Secret</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="client_secret" type=text value="<%= demokit.config.artikcloud.client_secret %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Redirect URL</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text readonly value="<%= demokit.config.artikcloud.redirect_url %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">User token</label>
+        <div class="col-xs-9">
+          <input class="form-control" type=text readonly value="<%= demokit.data.akc.usertoken %>"></input>
+        </div>
+      </div>			
+    </form>
+
+    <div class="btn-group pull-right" role="group">
+      <a href="/akc/login" class="btn btn-default">Get user token</a>
+      <button onclick="$('#form_akc_info').submit();" class="btn btn-default">Save</a>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <hr/>
+        <h5><strong>Device lists (Available types: Shell proxy, Belkin WeMo Insight Switch Proxy)</strong></h5>
+      </div>
+    </div>
+
+    <table id="devices"
+            class="table table-hover table-condensed"
+            fixed-header>
+      <thead>
+        <tr>
+          <th class="col-xs-3">Name</th>
+          <th class="col-xs-9">Attributes</th>
+        </tr>
+      </thead>
+      <tbody><tr></tr></tbody>
+    </table>
+
+    <div class="btn-group pull-right" role="group">
+      <button id="get_device_list_btn" class="btn btn-default">Get device lists</button>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <hr/>
+        <h5><strong>Device ID & Tokens</strong></h5>
+      </div>
+    </div>
+
+    <form class="form-horizontal" id="form_device_token" method="post" action="/akc/device_tokens">
+      <div class="col-xs-12">
+        Belkin WeMo Insight Switch Proxy
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">DID</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="wemo_did" type=text value="<%= demokit.config.artikcloud.devices.wemo.did %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Token</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="wemo_token" type=text value="<%= demokit.config.artikcloud.devices.wemo.token %>"></input>
+        </div>
+      </div>	
+      <div class="col-xs-12">
+        Shell Proxy
+      </div>	
+      <div class="form-group">
+        <label class="control-label col-xs-3">DID</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="shell_did" type=text value="<%= demokit.config.artikcloud.devices.shell.did %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Token</label>
+        <div class="col-xs-9">
+          <input class="form-control" name="shell_token" type=text value="<%= demokit.config.artikcloud.devices.shell.token %>"></input>
+        </div>
+      </div>
+    </form>
+
+    <div class="btn-group pull-right" role="group">
+      <button onclick="$('#form_device_token').submit();" class="btn btn-default">Save</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Philips Hue bridge</div>
+  <div class="panel-body">
+
+    <form class="form-horizontal" id="form_hue_info" method="post" action="/hue/info">
+      <div class="form-group">
+        <label class="control-label col-xs-3">Registered Username</label>
+        <div class="col-xs-9">
+          <input class="form-control" id="hue_username" name="username" type=text value="<%= demokit.config.hue.username %>"></input>
+          You should press link button on the Hue bridge
+        </div>
+      </div>
+    </form>
+
+    <div class="btn-group pull-right" role="group">
+      <button onclick="get_registered_username()" id="get_registered_username_btn" class="btn btn-default">Get registered username</button>
+      <button onclick="$('#form_hue_info').submit();" class="btn btn-default">Save</a>
+    </div>
+  </div>
+</div>
+
+<%- include footer.ejs %>
+
+<script src="/javascripts/page_setup.js"></script>
+
+
+
+		<!--
+		<div class="row">
+		<div class="col-xs-6">
+		<div class="input-group">
+		<span class="input-group-addon">Person</span>
+		<select class="selectpicker form-control">
+		<option>A</option>
+		<option>B</option>
+		<option>C</option>
+		</select>
+		</div>
+		</div>
+		<div class="col-xs-6">
+		<div class="input-group">
+		<span class="input-group-addon">Speed</span>
+		<select class="selectpicker form-control">
+		<option>0.5</option>
+		<option>0.75</option>
+		<option selected>1.0</option>
+		<option>1.25</option>
+		<option>1.5</option>
+		<option>1.75</option>
+		<option>2</option>
+		</select>
+		</div>
+		</div>
+		</div>
+		-->

@@ -1,0 +1,40 @@
+'use strict'
+
+const https = require('https')
+const url = require('url')
+
+var api = function (apiURL, token) {
+  return new Promise((resolve, reject) => {
+    const opts = url.parse(apiURL)
+    opts.headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+
+    https.get(opts, (res) => {
+      const tmp = []
+      res.on('data', (chunk) => tmp.push(chunk))
+      res.on('end', () => {
+        if (res.statusCode < 200 || res.statusCode > 299) {
+          console.log('error: statusCode: ', res.statusCode)
+          reject(new Error(JSON.parse(tmp.join('')).error.message + ' (status code: ' + res.statusCode + ')'))
+        } else {
+          console.log('done:', tmp)
+          resolve(JSON.parse(tmp.join('')))
+        }
+      })
+    }).on('error', (err) => {
+      console.log('error: ', err)
+      reject(err)
+    })
+  })
+}
+
+module.exports.getUserDevices = function (userToken, userId) {
+  return api('https://api.artik.cloud/v1.1/users/' + userId + '/devices', userToken)
+}
+
+module.exports.getDeviceToken = function (userToken, did) {
+  console.log('get device token - id=' + did)
+  return api('https://api.artik.cloud/v1.1/devices/' + did + '/tokens', userToken)
+}
