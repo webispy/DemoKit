@@ -122,6 +122,15 @@ Slave board (front door simulation)
 
 # reboot
 ```
+### Patch
+```sh
+# cd demokit
+# vi node_modules/mdns/lib/resolver_sequence_tasks.js
+        try {
+-          //var error = dns_sd.buildException(errorCode);
++          var error = null;
+          if ( ! error && service.interfaceIndex === iface) {
+```
 
 ## Link the Alexa, ARTIK Cloud and Devices to DemoKit
 
