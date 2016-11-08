@@ -14,6 +14,7 @@ ARTIK Cloud API and ARTIK module connectivity test
 - Hue bridge + Hue lamp
 - ipTime A3004NS-d (support Android phone usb tethering)
 - Bluetooth Speaker
+- Samsung Smartcam
 
 #### Software - Initial setup
 - Install dependency packages to each ARTIK 710 boards
