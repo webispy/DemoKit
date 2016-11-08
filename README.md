@@ -93,8 +93,9 @@ ARTIK710 # reset
 
 ##### Hue bridge setup
 
-1. ...
-1. ...
+1. Install Hue app on your smartphone
+1. Add Hue Bridge on Hue app
+1. Add bulb
 
 ##### Samsung Smartcamera
 
