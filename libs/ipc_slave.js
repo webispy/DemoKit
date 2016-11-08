@@ -119,6 +119,8 @@ module.exports.connect = function (addr) {
     settings.config = data
     settings.Save()
   })
+
+  socket.emit('status', { wemo: settings.data.wemo })
 }
 
 module.exports.disconnect = function () {

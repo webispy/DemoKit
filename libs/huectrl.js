@@ -19,7 +19,7 @@ function updateHueApi (obj) {
     return
   }
 
-  settings.data.hue = { ip: obj.ip }
+  settings.data.hue = obj.ip
   obj.api = new Hue.HueApi(obj.ip, settings.config.hue.username)
 }
 

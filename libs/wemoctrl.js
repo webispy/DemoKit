@@ -1,5 +1,6 @@
 'use strict'
 
+const settings = require('./settings')
 const WeMo = require('wemo')
 const client = WeMo.Search()
 
@@ -7,6 +8,7 @@ let handle = null
 
 client.on('found', (device) => {
   handle = new WeMo(device.ip, device.port)
+  settings.data.wemo = device.ip
 })
 
 module.exports.getStatus = function (cb) {

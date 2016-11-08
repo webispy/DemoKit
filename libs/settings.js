@@ -14,7 +14,8 @@ const settings = {
       usertoken: 'none',
       userid: 'none'
     },
-    hue: null
+    hue: null,
+    wemo: null
   },
   data_path: path.join(__dirname, '/../public/'),
   Save: function () {

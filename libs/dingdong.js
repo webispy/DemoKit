@@ -8,8 +8,9 @@ module.exports.setTrigger = function (src) {
     const player = new MPlayer()
     player.on('start', console.log.bind(this, 'playback started'))
     player.on('stop', console.log.bind(this, 'playback stoped'))
-    player.openFile('../data/ding_dong_bell_door.mp3')
+    player.on('status', console.log)
+    player.openFile('./data/ding_dong_bell_door.mp3')
 
-    rtspPlayer.start()
+    rtspPlayer.toggle()
   })
 }

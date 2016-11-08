@@ -15,6 +15,12 @@ function start (url) {
     return
   }
 
+  if (url == undefined) {
+    iter = list.entries()
+    let item = iter.next()
+    url = item.value[1]
+  }
+
   const args = [ '-e', 'rtspsrc',
     'location=' + url, 'latency=0',
     '!', 'rtph264depay',
@@ -25,11 +31,10 @@ function start (url) {
   ]
 
   ipc.sendLog('play from ', url)
-console.log(args)
   camplayer = spawn('gst-launch-1.0', args)
-camplayer.on('error', function (err) {
-	console.log(err)
-})
+  camplayer.on('error', function (err) {
+    console.log(err)
+  })
   camplayer.on('close', function (code, signal) {
     console.log('closed:', code, signal)
   })
