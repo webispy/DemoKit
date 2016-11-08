@@ -96,6 +96,12 @@ ARTIK710 # reset
 1. ...
 1. ...
 
+##### Samsung Smartcamera
+
+1. https://www.samsungsmartcam.com/
+1. Register your account
+1. Register the camera and Setup id/password to 'admin' / '1234'
+
 ### Installing
 
 ```sh
