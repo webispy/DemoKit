@@ -7,7 +7,7 @@ const list = new Map()
 let iter = list.entries()
 let camplayer = null
 
-list.set('webcam', 'rtsp://admin:1234@192.168.0.30/profile4/media.smp')
+//list.set('webcam', 'rtsp://admin:1234@192.168.0.30/profile4/media.smp')
 
 function start (url) {
   if (camplayer) {
@@ -25,7 +25,11 @@ function start (url) {
   ]
 
   ipc.sendLog('play from ', url)
+console.log(args)
   camplayer = spawn('gst-launch-1.0', args)
+camplayer.on('error', function (err) {
+	console.log(err)
+})
   camplayer.on('close', function (code, signal) {
     console.log('closed:', code, signal)
   })
@@ -66,6 +70,16 @@ module.exports.setTrigger = function (src) {
 module.exports.add = function (name, url) {
   if (list.get(name)) {
     return
+  }
+
+  if (name === "ArtikCam") {
+    url += "/test"
+  }
+
+  if (name[0] === "S") {
+    var tmp = url.split('//')[1]
+    var ip = tmp.split(':')[0]
+    url = 'rtsp://admin:1234@' + ip + '/profile4/media.smp'
   }
 
   list.set(name, url)
