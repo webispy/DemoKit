@@ -34,6 +34,10 @@ function sendLog (args) {
   }
 }
 
+function sendStatus() {
+  socket.emit('status', { wemo: settings.data.wemo })
+}
+
 module.exports.setup = function () {
   gpioctrl.LED400.on('on', () => {
     if (socket == null) {
@@ -120,7 +124,7 @@ module.exports.connect = function (addr) {
     settings.Save()
   })
 
-  socket.emit('status', { wemo: settings.data.wemo })
+  sendStatus()
 }
 
 module.exports.disconnect = function () {
@@ -133,5 +137,7 @@ module.exports.disconnect = function () {
 module.exports.setWemoHandler = function (handler) {
   wemoHandler = handler
 }
+
+module.exports.sendStatus = sendStatus
 
 module.exports.sendLog = sendLog
