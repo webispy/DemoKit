@@ -46,6 +46,7 @@ function get_registered_username () {
       var result = JSON.parse(data)
       console.log(result)
 
+      $('#hue_username').val(result.username)
       $('#get_registered_username_btn').prop('disabled', false)
       $('#get_registered_username_btn').html('Get registered username')
     })
