@@ -27,7 +27,7 @@ startSearch()
 
 setInterval(function() {
   if (handle == null) {
-    console.log('can't find WeMo in 5 secs. retry WeMo search')
+    console.log('can not find WeMo in 5 secs. retry WeMo search')
     startSearch()
   }
 }, 5000)
