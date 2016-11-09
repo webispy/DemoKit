@@ -21,6 +21,10 @@ function updateHueApi (obj) {
 
   settings.data.hue = obj.ip
   obj.api = new Hue.HueApi(obj.ip, settings.config.hue.username)
+  obj.api.setLightState(1, obj.lightstate.shortAlert(), (err, lights) => {
+    console.log(lights)
+    cb(err, lights)
+  })
 }
 
 function HueBridge () {
@@ -39,11 +43,13 @@ HueBridge.prototype.Search = function () {
   Hue.nupnpSearch((err, bridge) => {
     if (err) {
       console.log(err)
+      self.emit('notfound', null)
       return
     }
 
     if (bridge.length === 0) {
       console.log("can't find hue bridge")
+      self.emit('notfound', null)
       return
     }
 
@@ -110,6 +116,13 @@ HueBridge.prototype.getStatus = function (cb) {
 }
 
 const hb = new HueBridge()
+
+hb.on('notfound', function () {
+  console.log('retry hue search')
+  setTimeout(function () {
+    hb.Search()
+  }, 1000)
+})
 
 hb.Search()
 
