@@ -19,33 +19,35 @@ ARTIK Cloud API and ARTIK module connectivity test
 #### Software - Initial setup
 - Install dependency packages to each ARTIK 710 boards
 ```sh
-# dnf update
-# dnf install git alsa-lib-devel npm gstreamer1-rtsp-server avahi-devel avahi-compat-libdns_sd-devel
+dnf update
+dnf install git alsa-lib-devel npm gstreamer1-rtsp-server avahi-devel avahi-compat-libdns_sd-devel
 ```
 
 - Install RTSP server program
 ```sh
-# dnf install autoconf automake m4 libtool gtk-doc glib2-devel gstreamer1-devel gstreamer1-plugins-base-devel
-# git clone https://github.com/GStreamer/gst-rtsp-server.git
-# cd gst-rtsp-server
-# git checkout 1.8
-# ./autogen.sh
-# ./configure --enable-examples
-# cd examples
-# libtool --mode=install install test-launch /usr/local/bin/
-# make
+dnf install autoconf automake m4 libtool gtk-doc glib2-devel gstreamer1-devel gstreamer1-plugins-base-devel
+git clone https://github.com/GStreamer/gst-rtsp-server.git
+cd gst-rtsp-server
+git checkout 1.8
+./autogen.sh
+./configure --enable-examples
+make
+cd examples
+libtool --mode=install install test-launch /usr/local/bin/
 ```
 
 - Install TTS program (SVOX pico2wave)
 ```sh
 [ubuntu-host]# apt-get source libttspico-utils
 [ubuntu-host]# scp -r svox-1.0+git20130326/pico {your-710-board}
-# chmod +x autogen.sh
-# dnf install autoconf automake libtool popt-devel
-# ./autogen.sh
-# ./configure
-# make
-# make install
+```
+```sh
+chmod +x autogen.sh
+dnf install autoconf automake libtool popt-devel
+./autogen.sh
+./configure
+make
+make install
 ```
 
 #### Environment configuration
@@ -70,14 +72,15 @@ ARTIK710 # reset
 
 ##### BT pairing with 710 board(master)
 ```sh
-# bluetoothctl
+bluetoothctl
 [bluetooth]# scan on
 [NEW] Device XX:XX:XX:XX:XX:XX Logitech X100
 [bluetooth]# pair XX:XX:XX:XX:XX:XX
 [bluetooth]# connect XX:XX:XX:XX:XX:XX
 [bluetooth]# exit
-# pactl list cards
-# pactl set-card-profile 1 a2dp_sink
+
+pactl list cards
+pactl set-card-profile 1 a2dp_sink
 ```
 
 ##### ipTime setup
@@ -107,26 +110,26 @@ ARTIK710 # reset
 ### Installing
 
 ```sh
-# git clone http://github.com/...
-# cd demokit
-# npm install
+git clone http://github.com/...
+cd demokit
+npm install
 
-# npm install -g forever forever-service
+npm install -g forever forever-service
 
-Master board (indoor simulation)
-# forever-service install master --script bin/www
-# service start master
+# Master board (indoor simulation)
+forever-service install master --script bin/www
+service start master
 
-Slave board (front door simulation)
-# forever-service install slave --script slave.js
-# service start slave
+# Slave board (front door simulation)
+forever-service install slave --script slave.js
+service start slave
 
-# reboot
+reboot
 ```
 ### Patch
-```sh
-# cd demokit
-# vi node_modules/mdns/lib/resolver_sequence_tasks.js
+
+demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
+```javascript
         try {
 -          //var error = dns_sd.buildException(errorCode);
 +          var error = null;
