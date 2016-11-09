@@ -109,6 +109,8 @@ slave.on('connection', function (socket) {
     if (data.wemo) {
       settings.data.wemo = data.wemo
     }
+
+    web.emit('settings', settings)
   })
 
   socket.emit('config', settings.config)
