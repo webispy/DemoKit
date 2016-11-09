@@ -160,15 +160,43 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
 
 - ...
 
-## Open-source libraries used
+## Open-source libraries/project used
+
+### Web
 - [Bootstrap](http://getbootstrap.com/) - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 - [Bootstrap Switch](http://www.bootstrap-switch.org/)
 - [jQuery](https://jquery.com/) - jQuery is a fast, small, and feature-rich JavaScript library.
 - [Notify.js](https://notifyjs.com/) - Notify.js is a jQuery plugin to provide simple yet fully customisable notifications.
 - [socket.io](http://socket.io/) - Socket.IO enables real-time bidirectional event-based communication.
 - [Font Awesome](http://fontawesome.io/) - The iconic font and CSS toolkit.
+
+### Node.js
+- [Express](http://expressjs.com/): [body-parser](https://www.npmjs.com/package/body-parser), [cookie-parser](https://www.npmjs.com/package/cookie-parser), [debug](https://www.npmjs.com/package/debug), [ejs](https://www.npmjs.com/package/ejs), [express](https://www.npmjs.com/package/express), [morgan](https://www.npmjs.com/package/morgan), [serve-favicon](https://www.npmjs.com/package/serve-favicon)
+- [bl](https://www.npmjs.com/package/bl) - Buffer List: collect buffers and access with a standard readable Buffer interface, streamable too!
+- [child-process-promise](https://www.npmjs.com/package/child-process-promise) - Simple wrapper around the "child_process" module that makes use of promises
+- [http-message-parser](https://www.npmjs.com/package/http-message-parser) - HTTP message parser in JavaScript.
+- [mdns](https://www.npmjs.com/package/mdns) - multicast DNS service discovery
+- [mplayer](https://www.npmjs.com/package/mplayer) - Node.js wrapper for mplayer
+- [mqtt](https://www.npmjs.com/package/mqtt) - MQTT.js is a client library for the MQTT protocol, written in JavaScript for node.js and the browser.
+- [node-hue-api](https://www.npmjs.com/package/node-hue-api) - Phillips Hue API Library for Node.js
+- [node-microphone](https://www.npmjs.com/package/node-microphone) - Allows Microphone access in node with arecord (Linux) and sox (Windows/OSX).
+- [onoff](https://www.npmjs.com/package/onoff) - GPIO access and interrupt detection with JavaScript
+- [passport](https://www.npmjs.com/package/passport) - Simple, unobtrusive authentication for Node.js.
+- [passport-artikcloud](https://www.npmjs.com/package/passport-artikcloud) - ARTIK Cloud authentication strategy for Passport.
+- [passport-oauth2](https://www.npmjs.com/package/passport-oauth2) - OAuth 2.0 authentication strategy for Passport.
+- [passport-oauth2-refresh](https://www.npmjs.com/package/passport-oauth2-refresh) - A passport.js add-on to provide automatic OAuth 2.0 token refreshing.
+- [request](https://www.npmjs.com/package/request) - Simplified HTTP request client.
+- [socket.io](https://www.npmjs.com/package/socket.io) - node.js realtime framework server
+- [socket.io-client](https://www.npmjs.com/package/socket.io-client) - Realtime application framework (client)
+- [websocket](https://www.npmjs.com/package/websocket) - Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.
+- [wemo](https://www.npmjs.com/package/wemo) - WeMo client
+
+### Utils
 - [RTSP server based on GStreamer](https://github.com/GStreamer/gst-rtsp-server)
 - [SVOX TTS](http://packages.ubuntu.com/xenial/libttspico-utils)
+
+### Etc
+- [freeSFX](http://www.freesfx.co.uk/) - [Ding Dong Bell Door sound](http://www.freesfx.co.uk/download/?type=mp3&id=16513)
 
 ## License and Copyright
 
