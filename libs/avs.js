@@ -24,7 +24,7 @@ function playMP3 (filename) {
 
 module.exports.TTS = function (text, filename) {
   const wavPath = settings.data_path + filename
-  return exec('pico2wave -w ' + wavPath + ' "' + text + '"')
+  return exec('/usr/local/bin/pico2wave -w ' + wavPath + ' "' + text + '"')
 }
 
 module.exports.sendWav = function (wavFilename) {
