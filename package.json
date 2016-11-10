@@ -1,5 +1,5 @@
 {
-  "name": "shole",
+  "name": "DemoKit",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "name": "Inho Oh",
     "email": "inho48.oh@samsung.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "bl": "^1.1.2",
     "body-parser": "~1.15.1",
