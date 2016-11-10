@@ -21,13 +21,18 @@
     "devices": {
       "wemo": {
         "dtid": "dtfd0ddd61f92e4a5c80c214a93dcba4cf",
-        "did": "",
-        "token": ""
+        "did": "67807fdad3d94a229bd900f43951a920",
+        "token": "68175eab0e004bc5bc34620197e5b1e8"
       },
       "shell": {
         "dtid": "dtcf3ef7e6431d4bc4849ad2f82d205ed7",
         "did": "",
         "token": ""
+      },
+      "player": {
+        "dtid": "dt602b63ab424d40968a1fef837ff88c1e",
+        "did": "e9ca1ce967f04124b50093c507c9cfed",
+        "token": "7aeacfae8c0c4d65aff15b2edfe78570"
       }
     }
   },
