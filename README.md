@@ -200,6 +200,6 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
 
 ## License and Copyright
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details
 
 Copyright (c) 2016 Samsung Electronics Co., Ltd.
