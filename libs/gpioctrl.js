@@ -40,6 +40,7 @@ function GpioCtrl (pin, isInput) {
   this.pin = pin
   this.isInput = isInput
   this.handle = null
+  this.prev_value = -1
 
   if (pin === 0) {
     console.log('GPIO pin(virtual) opened')
@@ -62,6 +63,13 @@ function GpioCtrl (pin, isInput) {
       if (err) {
         console.log(err)
       }
+
+      if (self.prev_value === value) {
+        console.log('ignore invalid input')
+        return
+      }
+
+      self.prev_value = value
 
       if (value === 0) {
         self.emit('pressed')
