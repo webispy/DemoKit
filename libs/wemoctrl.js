@@ -70,7 +70,9 @@ module.exports.setOn = function (cb) {
     return
   }
 
+  console.log('sd down')
   sd.up()
+  sd.enable()
 
   handle.setBinaryState(1, (err, result) => {
     if (err) {
@@ -95,7 +97,11 @@ module.exports.setOff = function (cb) {
       return
     }
 
-    setTimeout(() => sd.down(), 3000)
+    setTimeout(() => {
+       console.log('sd down')
+       sd.down()
+       sd.enable()
+    }, 3000)
 
     cb(null, result)
   })
