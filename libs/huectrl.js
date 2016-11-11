@@ -36,7 +36,7 @@ function updateHueApi (obj) {
 
   settings.data.hue = obj.ip
   obj.api = new Hue.HueApi(obj.ip, settings.config.hue.username)
-  obj.api.setLightState(1, obj.lightstate.shortAlert(), (err, lights) => {
+  obj.api.setLightState(1, obj.lightstate.off(), (err, lights) => {
     if (err) {
       console.log(err)
     } else {

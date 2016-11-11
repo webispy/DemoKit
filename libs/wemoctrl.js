@@ -35,20 +35,14 @@ function startSearch () {
     console.log('wemo found:', device.ip, device.port)
     handle = new WeMo(device.ip, device.port)
     settings.data.wemo = device.ip
+    setOn(() => {
+      console.log('wemo setOn completed')
+    })
     ipc.sendStatus()
   })
 }
 
-startSearch()
-
-setInterval(() => {
-  if (handle == null) {
-    console.log('can not find WeMo in 5 secs. retry WeMo search')
-    startSearch()
-  }
-}, 5000)
-
-module.exports.getStatus = function (cb) {
+function getStatus (cb) {
   if (handle == null) {
     cb(new Error("can't find wemo"))
     return
@@ -64,7 +58,7 @@ module.exports.getStatus = function (cb) {
   })
 }
 
-module.exports.setOn = function (cb) {
+function setOn (cb) {
   if (handle == null) {
     cb(new Error("can't find wemo"))
     return
@@ -84,7 +78,7 @@ module.exports.setOn = function (cb) {
   })
 }
 
-module.exports.setOff = function (cb) {
+function setOff (cb) {
   if (handle == null) {
     cb(new Error("can't find wemo"))
     return
@@ -98,11 +92,24 @@ module.exports.setOff = function (cb) {
     }
 
     setTimeout(() => {
-       console.log('sd down')
-       sd.down()
-       sd.enable()
+      console.log('sd down')
+      sd.down()
+      sd.enable()
     }, 3000)
 
     cb(null, result)
   })
 }
+
+startSearch()
+
+setInterval(() => {
+  if (handle == null) {
+    console.log('can not find WeMo in 5 secs. retry WeMo search')
+    startSearch()
+  }
+}, 5000)
+
+module.exports.getStatus = getStatus
+module.exports.setOn = setOn
+module.exports.setOff = setOff
