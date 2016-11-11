@@ -18,6 +18,7 @@
 const settings = require('./settings')
 const ipc = require('./ipc_slave')
 const WeMo = require('wemo')
+const sd = require('./slidingdoorctrl')
 
 let client = null
 let handle = null
@@ -69,6 +70,8 @@ module.exports.setOn = function (cb) {
     return
   }
 
+  sd.up()
+
   handle.setBinaryState(1, (err, result) => {
     if (err) {
       cb(err)
@@ -85,11 +88,14 @@ module.exports.setOff = function (cb) {
     return
   }
 
+
   handle.setBinaryState(0, (err, result) => {
     if (err) {
       cb(err)
       return
     }
+
+    setTimeout(() => sd.down(), 3000)
 
     cb(null, result)
   })
