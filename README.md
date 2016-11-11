@@ -118,11 +118,11 @@ npm install -g forever forever-service
 
 # Master board (indoor simulation)
 forever-service install master --script bin/www
-service start master
+service master start
 
 # Slave board (front door simulation)
 forever-service install slave --script slave.js
-service start slave
+service slave start
 
 reboot
 ```

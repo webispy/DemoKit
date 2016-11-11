@@ -50,7 +50,9 @@ function sendLog (args) {
 }
 
 function sendStatus () {
-  socket.emit('status', { wemo: settings.data.wemo })
+  if (socket) {
+    socket.emit('status', { wemo: settings.data.wemo })
+  }
 }
 
 module.exports.setup = function () {
