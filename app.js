@@ -15,12 +15,9 @@
  */
 'use strict'
 
-const gpioctrl = require('./libs/gpioctrl')
 const settings = require('./libs/settings')
-const dingdong = require('./libs/dingdong')
-const micRecorder = require('./libs/micrecorder')
 const rtspPlayer = require('./libs/playrtsp')
-const hue = require('./libs/huectrl')
+const scenario = require('./libs/scenario')
 
 const express = require('express')
 const path = require('path')
@@ -54,11 +51,7 @@ browser.on('serviceDown', function (service) {
 })
 
 browser.start()
-
-micRecorder.setTrigger(gpioctrl.LED400)
-rtspPlayer.setTrigger(gpioctrl.LED401)
-dingdong.setTrigger(gpioctrl.RemoteGpio.LED400)
-hue.setTrigger(gpioctrl.RemoteGpio.LED400)
+scenario.setupMaster()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
