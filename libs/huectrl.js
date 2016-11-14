@@ -133,6 +133,16 @@ HueBridge.prototype.getStatus = function (cb) {
   })
 }
 
+HueBridge.prototype.setTrigger = function (src) {
+  src.on('on', () => {
+    hb.setOn((err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
+  })
+}
+
 const hb = new HueBridge()
 
 hb.on('notfound', function () {

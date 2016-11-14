@@ -18,7 +18,7 @@
 const https = require('https')
 const url = require('url')
 
-var api = function (apiURL, token) {
+const api = function (apiURL, token) {
   return new Promise((resolve, reject) => {
     const opts = url.parse(apiURL)
     opts.headers = {

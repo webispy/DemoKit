@@ -17,8 +17,9 @@
 
 const settings = require('./settings')
 const ipc = require('./ipc_slave')
-const WeMo = require('wemo')
 const sd = require('./slidingdoorctrl')
+
+const WeMo = require('wemo')
 
 let client = null
 let handle = null

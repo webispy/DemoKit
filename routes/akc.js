@@ -20,10 +20,10 @@ const akc = require('../libs/akcdevicectrl')
 const ipc = require('../libs/ipc_server')
 
 const express = require('express')
-const router = express.Router()
-
 const passport = require('passport')
 const ARTIKCloudStrategy = require('passport-artikcloud')
+
+const router = express.Router()
 
 const strategy = new ARTIKCloudStrategy({
   clientID: settings.config.artikcloud.client_id,

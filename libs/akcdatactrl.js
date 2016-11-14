@@ -17,7 +17,6 @@
 
 const util = require('util')
 const EventEmitter = require('events')
-
 const mqtt = require('mqtt')
 const WSClient = require('websocket').client
 const request = require('request')
@@ -168,7 +167,7 @@ module.exports.REST = akcREST
  *   : data => JSON Object for actions
  *     e.g. [ { name: "setOn", parameters: {} }, {..} ]
  * - 'message' : function(data)
- *   : data=> JSON Object for message
+ *   : data => JSON Object for message
  *
  * Methods
  * - sendMessage(data [, callback])

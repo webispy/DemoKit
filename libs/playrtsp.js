@@ -95,8 +95,8 @@ module.exports.add = function (name, url) {
   }
 
   if (name[0] === 'S') {
-    var tmp = url.split('//')[1]
-    var ip = tmp.split(':')[0]
+    let tmp = url.split('//')[1]
+    let ip = tmp.split(':')[0]
     url = 'rtsp://admin:1234@' + ip + '/profile4/media.smp'
   }
 

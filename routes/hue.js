@@ -17,11 +17,11 @@
 
 const settings = require('../libs/settings')
 const ipc = require('../libs/ipc_server')
+const hue = require('../libs/huectrl')
 
 const express = require('express')
-const router = express.Router()
 
-const hue = require('../libs/huectrl')
+const router = express.Router()
 
 router.get('/username', (req, res) => {
   console.log('get hue bridge username')

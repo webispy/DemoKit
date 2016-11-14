@@ -19,11 +19,11 @@ const settings = require('../libs/settings')
 const AVS = require('../libs/avs')
 
 const express = require('express')
-const router = express.Router()
-
 const passport = require('passport')
 const passportRefresh = require('passport-oauth2-refresh')
 const OAuth2Strategy = require('passport-oauth2')
+
+const router = express.Router()
 
 const strategy = new OAuth2Strategy({
   authorizationURL: 'https://www.amazon.com/ap/oa',
