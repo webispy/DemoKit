@@ -50,6 +50,51 @@ make
 make install
 ```
 
+### Software - GUI Environment (Optional)
+```sh
+mount -o remount,rw /boot
+dnf install lxde-common lxpanel lxsession lxdm lxterminal lxrandr lxlauncher lxinput lxtask firefox xterm @base-x
+```
+```sh
+vi /etc/X11/xorg.conf.d/xorg.conf
+Section "Device"
+	Identifier	"Mali-Fbdev"
+	Driver		"armsoc"
+	Option		"fbdev"			"/dev/fb0"
+	Option		"DRI2"			"true"
+	Option		"DRI2_PAGE_FLIP"	"true"
+	Option		"DRI2_WAIT_VSYNC"	"true"
+	Option		"Debug"			"false"
+	Option		"DPMS"			"false"
+EndSection
+
+Section "Screen"
+	Identifier	"Default Screen"
+	Device		"Mali-Fbdev"
+	DefaultDepth	24
+	SubSection "Display"
+		Depth   24
+		Modes   "1920x1080"
+	EndSubSection
+EndSection
+
+Section "DRI"
+	Mode 0666
+EndSection
+
+Section "ServerFlags"
+	Option	"blank time"	"0"
+	Option	"standby time"	"0"
+	Option	"suspend time"	"0"
+	Option	"off time"	"0"
+	Option	"dpms"		"false"
+EndSection
+```
+```sh
+rm -f /etc/systemd/system/default.target
+ln -s /lib/systemd/system/graphical.target /etc/systemd/system/default.target
+```
+
 #### Environment configuration
 
 ##### 710 board(master) IP settings
