@@ -97,13 +97,26 @@ HueBridge.prototype.getUsername = function (cb) {
   })
 }
 
+HueBridge.prototype.setAlert = function (cb) {
+  if (this.api == null) {
+    cb(new Error('not ready'))
+    return
+  }
+
+  this.api.setLightState(1, {"on": true, "bri": 64, "alert": "lselect"}, (err, lights) => {
+    console.log(lights)
+    cb(err, lights)
+  })
+}
+
 HueBridge.prototype.setOn = function (cb) {
   if (this.api == null) {
     cb(new Error('not ready'))
     return
   }
 
-  this.api.setLightState(1, this.lightstate.on(), (err, lights) => {
+//  this.api.setLightState(1, this.lightstate.on(), (err, lights) => {
+  this.api.setLightState(1, {"on": true, "bri": 64, "alert": "none"}, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -135,7 +148,7 @@ HueBridge.prototype.getStatus = function (cb) {
 
 HueBridge.prototype.setTrigger = function (src) {
   src.on('on', () => {
-    hb.setOn((err) => {
+    hb.setAlert((err) => {
       if (err) {
         console.log(err)
       }
