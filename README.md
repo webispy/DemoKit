@@ -2,7 +2,7 @@
 
 # DemoKit
 
-ARTIK Cloud API and ARTIK module connectivity test
+ARTIK Cloud and ARTIK Module Demo
 
 ## Getting Started
 

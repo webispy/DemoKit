@@ -28,16 +28,6 @@ const browser = mdns.createBrowser(
   }
 )
 
-const rtspservice = {
-  command: '/usr/local/bin/test-launch',
-  args: [
-    '( v4l2src device=/dev/video6 ! video/x-raw,format=I420,framerate=15/1,width=1280,height=720 ! nxvideoenc ! rtph264pay name=pay0 )',
-    '-p',
-    '8554'
-  ],
-  child: null
-}
-
 const ad = mdns.createAdvertisement(mdns.tcp('rtsp'), 8554, { name: 'ArtikCam' })
 ad.start()
 
@@ -75,6 +65,16 @@ ipc.setWemoHandler({
     })
   }
 })
+
+const rtspservice = {
+  command: '/usr/local/bin/test-launch',
+  args: [
+    '( v4l2src device=/dev/video6 ! video/x-raw,format=I420,framerate=15/1,width=1280,height=720 ! nxvideoenc ! rtph264pay name=pay0 )',
+    '-p',
+    '8554'
+  ],
+  child: null
+}
 
 rtspservice.child = spawn(rtspservice.command, rtspservice.args)
 rtspservice.child.on('close', function (code, signal) {

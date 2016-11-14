@@ -103,7 +103,7 @@ HueBridge.prototype.setAlert = function (cb) {
     return
   }
 
-  this.api.setLightState(1, {"on": true, "bri": 64, "alert": "lselect"}, (err, lights) => {
+  this.api.setLightState(1, { 'on': true, 'bri': 64, 'alert': 'lselect' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -115,8 +115,8 @@ HueBridge.prototype.setOn = function (cb) {
     return
   }
 
-//  this.api.setLightState(1, this.lightstate.on(), (err, lights) => {
-  this.api.setLightState(1, {"on": true, "bri": 64, "alert": "none"}, (err, lights) => {
+  //  this.api.setLightState(1, this.lightstate.on(), (err, lights) => {
+  this.api.setLightState(1, { 'on': true, 'bri': 64, 'alert': 'none' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })

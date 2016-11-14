@@ -85,7 +85,6 @@ function setOff (cb) {
     return
   }
 
-
   handle.setBinaryState(0, (err, result) => {
     if (err) {
       cb(err)
