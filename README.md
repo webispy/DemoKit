@@ -10,8 +10,10 @@ ARTIK Cloud and ARTIK Module Demo
 
 #### Hardware
 - ARTIK 710 * 2 (Master and Slave)
-- WeMo switch
-- Hue bridge + Hue lamp
+- ARTIK 710 LCD (Connect to Master)
+- ARTIK 710 Camera (Connect to Slave)
+- Belkin WeMo Insight Switch
+- Hue Bridge + Hue Bulb
 - ipTime A3004NS-d (support Android phone usb tethering)
 - Bluetooth Speaker
 - Samsung Smartcam
@@ -137,14 +139,15 @@ pactl set-card-profile 1 a2dp_sink
 ##### WeMo switch setup
 
 1. Install WeMo app on your smartphone
-1. Connect to WeMo wifi
-1. ...
+1. Wifi connect to WeMo (WeMo AP)
+1. Run WeMo application
+1. Setup WeMo to use ipTime AP
 
 ##### Hue bridge setup
 
 1. Install Hue app on your smartphone
 1. Add Hue Bridge on Hue app
-1. Add bulb
+1. Add Hue Bulb to Hue Bridge
 
 ##### Samsung Smartcamera
 
@@ -181,18 +184,52 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
           if ( ! error && service.interfaceIndex === iface) {
 ```
 
+## Create your own Alexa Voice Service
+1. https://developer.amazon.com/edw/home.html#/avs/list
+1. Register a Product Type --> Device
+1. Fill the form
+   - Device Type Info
+     - Company Name: ...
+     - Device Type ID: demokit
+     - Display Name: ...
+   - Security profile
+     - General
+       - Client ID & Client Secret --> Copy to clipboard
+     - Web settings
+       - Allowed Return URLs: https://192.168.0.10:9745/avs/callback
+
+## Create your own ARTIK Cloud application
+1. https://developer.artik.cloud/dashboard/applications
+1. Click NEW APPLICATION
+1. Fill the form
+   - APP NAME: DemoKit
+   - DESCRIPTION: ...
+   - AUTHORIZATION METHODS: Client credentials, auth code
+   - AUTH REDIRECT URL: https://192.168.0.10:9745/akc/callback
+1. Save
+1. Permissions
+   - PERMISSIONS
+     - Profile: Check to Read
+   - DEVICE PERMISSIONS
+     - \+ SET PERMISSIONS FOR A SPECIFIC DEVICE
+     - Belkin WeMo Insight Switch Proxy: Read + Write
+     - Shell proxy: Read + Write
+1. Click 'DemoKit' from left panel
+1. Click 'SHOW CLIENT ID & SECRET' from right side
+   - Client ID & Secret --> Copy to clipboard
+
 ## Link the Alexa, ARTIK Cloud and Devices to DemoKit
 
 ### Setup Alexa Voice Service & ARTIK Cloud device token
-- Open https://192.168.0.10:9745 url using web browser(chrome)
-- Click 'Setup' page
+- Open https://192.168.0.10:9745/setup
 - Fill your AVS information to the client-id, client-secret field and 'Save'
 - Fill your ARTIK Cloud application information to the client-client-secret field and 'Save'
 - Click 'Get user tokens'
 - Click 'Get device tokens' and 'Save'
 
-### Setup Hue bridge
-- Press 'link button' on the Hue bridge
+### Register DemoKit to Hue bridge
+- Press 'link button' on the Hue Bridge device
+- Open https://192.168.0.10:9745/setup
 - Click 'Get registered username' and 'Save'
 
 ## Using the DemoKit
