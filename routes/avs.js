@@ -25,6 +25,20 @@ const OAuth2Strategy = require('passport-oauth2')
 
 const router = express.Router()
 
+function refreshRequest () {
+  console.log('AVS token refresh request..')
+  passportRefresh.requestNewAccessToken('oauth2', settings.data.avs.refresh,
+    (err, accessToken, refreshToken) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('AVS token refresh success')
+        settings.data.avs.token = accessToken
+        settings.data.avs.refresh = refreshToken
+      }
+    })
+}
+
 const strategy = new OAuth2Strategy({
   authorizationURL: 'https://www.amazon.com/ap/oa',
   tokenURL: 'https://api.amazon.com/auth/o2/token',
@@ -37,6 +51,7 @@ const strategy = new OAuth2Strategy({
     console.log('profile = ', profile)
     settings.data.avs.token = accessToken
     settings.data.avs.refresh = refreshToken
+    setInterval(refreshRequest, 30 * 60 * 1000)
     return done(null, profile)
   }
 )

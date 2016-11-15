@@ -30,6 +30,8 @@ const mdns = require('mdns')
 
 const app = express()
 
+require('./proxy/shellproxy')
+
 const ad = mdns.createAdvertisement(mdns.tcp('https'), 9745, { name: 'DemoKit' })
 ad.start()
 
