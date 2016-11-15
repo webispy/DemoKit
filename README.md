@@ -110,7 +110,7 @@ ARTIK710 # run factory_save
 ARTIK710 # reset
 ```
 
-* Static IP setup: 192.168.0.10
+* Static IP setup: 192.168.0.10 (OAuth2 callback url)
 
   1. Open the ipTime admin webpage (http://192.168.0.1)
   1. Setup static IP address using MAC address
