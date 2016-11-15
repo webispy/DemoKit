@@ -1,7 +1,6 @@
 {
   "name": "DemoKit",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },

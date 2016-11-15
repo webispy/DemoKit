@@ -9,12 +9,11 @@ ARTIK Cloud and ARTIK Module Demo
 ### Prerequisites
 
 #### Hardware
-- ARTIK 710 * 2 (Master and Slave)
-- ARTIK 710 LCD (Connect to Master)
-- ARTIK 710 Camera (Connect to Slave)
+- ARTIK 710 with LCD module
+- ARTIK 710 with Camera module
 - Belkin WeMo Insight Switch
 - Hue Bridge + Hue Bulb
-- ipTime A3004NS-d (support Android phone usb tethering)
+- ipTime A3004NS-d (Wireless router supporting Android phone usb tethering)
 - Bluetooth Speaker
 - Samsung Smartcam
 
@@ -56,21 +55,20 @@ make install
 
 ##### 710 board(master) IP settings
 
-* Static MAC address setup guide (u-boot)
+* Static MAC address setup (u-boot) Serial console
 ```sh
-Serial console
-Press 'Enter' key before start linux kernel
-ARTIK710 # run factory_load
-ARTIK710 # factory_info list
-ARTIK710 # factory_info write ethaddr <your mac address>  e.g.) 00:11:58:23:12:54
-ARTIK710 # run factory_save
-ARTIK710 # reset
+...
+Hit any key to stop autoboot:  3   <-- Enter key 
+artik710# run factory_load
+artik710# factory_info list
+artik710# factory_info write ethaddr <your mac address>  e.g.) 00:11:58:23:12:54
+artik710# run factory_save
+artik710# reset
 ```
 
 * Static IP setup: 192.168.0.10 (OAuth2 callback url)
-
   1. Open the ipTime admin webpage (http://192.168.0.1)
-  1. Setup static IP address using MAC address
+  1. Setup static IP address using 710 board MAC address
 
 ##### BT pairing with 710 board(master)
 ```sh
