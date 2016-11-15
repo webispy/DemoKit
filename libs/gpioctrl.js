@@ -133,10 +133,10 @@ let ctrls = {
   LED401: null,
 
   /**
-   * Virtual GPIO Controller
-   * Only Master-node can control the RemoteGpio module
+   * Fake Slave GPIO Controller
+   * Only Master-node can control the SlaveGpio
    */
-  RemoteGpio: {
+  SlaveGpio: {
     LED400: new GpioCtrl(0),
     LED401: new GpioCtrl(0)
   }
@@ -155,6 +155,7 @@ if (settings.config.use.virtual_gpio) {
 }
 
 /* link each button to led */
+/*
 ctrls.SW403.on('pressed', function () {
   ctrls.LED400.setOn()
 })
@@ -168,5 +169,6 @@ ctrls.SW404.on('pressed', function () {
 ctrls.SW404.on('released', function () {
   ctrls.LED401.setOff()
 })
+*/
 
 module.exports = ctrls

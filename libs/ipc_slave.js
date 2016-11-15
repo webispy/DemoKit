@@ -15,13 +15,13 @@
  */
 'use strict'
 
-const gpioctrl = require('./gpioctrl')
 const settings = require('./settings')
 const util = require('util')
 const io = require('socket.io-client')
 
 let socket = null
 let wemoHandler = null
+let fakeGpioHandler = null
 
 function sendLog (args) {
   let msg = ''
@@ -55,38 +55,12 @@ function sendStatus () {
   }
 }
 
-module.exports.setup = function () {
-  gpioctrl.LED400.on('on', () => {
-    if (socket == null) {
-      return
-    }
+module.exports.emitGpioEvent = function (pin, status) {
+  if (socket == null) {
+    return
+  }
 
-    socket.emit('gpio', { from: 'slave', pin: 'LED400', status: 1 })
-  })
-
-  gpioctrl.LED400.on('off', () => {
-    if (socket == null) {
-      return
-    }
-
-    socket.emit('gpio', { from: 'slave', pin: 'LED400', status: 0 })
-  })
-
-  gpioctrl.LED401.on('on', () => {
-    if (socket == null) {
-      return
-    }
-
-    socket.emit('gpio', { from: 'slave', pin: 'LED401', status: 1 })
-  })
-
-  gpioctrl.LED401.on('off', () => {
-    if (socket == null) {
-      return
-    }
-
-    socket.emit('gpio', { from: 'slave', pin: 'LED401', status: 0 })
-  })
+  socket.emit('gpio', { from: 'slave', pin: pin, status: status })
 }
 
 module.exports.connect = function (addr) {
@@ -106,7 +80,10 @@ module.exports.connect = function (addr) {
   })
 
   socket.on('fakegpio', (data) => {
-    let obj = null
+    if (fakeGpioHandler == null) {
+      sendLog('fakeGpioHandler not ready')
+      return
+    }
 
     console.log('fakegpio:', data)
     if (data.to !== 'slave') {
@@ -114,12 +91,10 @@ module.exports.connect = function (addr) {
     }
 
     if (data.pin === 'SW403') {
-      obj = gpioctrl.LED400
+      fakeGpioHandler.SW403(data.status)
     } else if (data.pin === 'SW404') {
-      obj = gpioctrl.LED401
+      fakeGpioHandler.SW404(data.status)
     }
-
-    obj.setStatus(data.status)
   })
 
   socket.on('wemoctrl', (data) => {
@@ -153,6 +128,10 @@ module.exports.disconnect = function () {
 
 module.exports.setWemoHandler = function (handler) {
   wemoHandler = handler
+}
+
+module.exports.setFakeGpioHandler = function (handler) {
+  fakeGpioHandler = handler
 }
 
 module.exports.sendStatus = sendStatus

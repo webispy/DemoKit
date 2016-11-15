@@ -17,6 +17,8 @@
 
 const ipc = require('./libs/ipc_slave')
 const wemo = require('./libs/wemoctrl')
+const scenario = require('./libs/scenario')
+
 const spawn = require('child_process').spawn
 
 const mdns = require('mdns')
@@ -44,7 +46,8 @@ browser.on('serviceDown', function (service) {
 
 browser.start()
 
-ipc.setup()
+scenario.setupSlave()
+
 ipc.setWemoHandler({
   on: function () {
     wemo.setOn(function (err, result) {

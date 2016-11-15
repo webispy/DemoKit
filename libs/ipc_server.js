@@ -15,14 +15,15 @@
  */
 'use strict'
 
-const gpioctrl = require('./gpioctrl')
 const settings = require('./settings')
 
 const util = require('util')
-
 const io = require('socket.io')()
 const web = io.of('/web')
 const slave = io.of('/slave')
+
+let fakeGpioHandler = null
+let slaveGpioHandler = null
 
 function sendLog (args) {
   let msg = ''
@@ -69,9 +70,7 @@ web.on('connection', function (socket) {
     updateStatus()
   })
 
-  /* Events from Webpage */
   socket.on('fakegpio', function (data) {
-    /* pass event to slave */
     if (data.to === 'slave') {
       if (slave) {
         slave.emit('fakegpio', data)
@@ -79,20 +78,22 @@ web.on('connection', function (socket) {
       } else {
         sendLog('slave not ready: ', data)
       }
+
+      return
+    }
+
+    if (fakeGpioHandler == null) {
+      sendLog('fakeGpioHandler not ready')
       return
     }
 
     sendLog('receive fakegpio event: ', data)
 
-    let obj = null
-
     if (data.pin === 'SW403') {
-      obj = gpioctrl.LED400
+      fakeGpioHandler.SW403(data.status)
     } else if (data.pin === 'SW404') {
-      obj = gpioctrl.LED401
+      fakeGpioHandler.SW404(data.status)
     }
-
-    obj.setStatus(data.status)
   })
 
   sendLog('web-user connected: ', socket.conn.remoteAddress)
@@ -107,14 +108,20 @@ slave.on('connection', function (socket) {
   })
 
   socket.on('gpio', function (data) {
-    if (data.from === 'slave') {
-      gpioctrl.RemoteGpio[data.pin].setStatus(data.status)
+    if (slaveGpioHandler == null) {
+      sendLog('slaveGpioHandler not ready')
+      return
+    }
+
+    if (data.pin === 'LED400') {
+      slaveGpioHandler.LED400(data.status)
+    } else if (data.pin === 'LED401') {
+      slaveGpioHandler.LED401(data.status)
     }
 
     web.emit('gpio', data)
   })
 
-  /* Log from slave */
   socket.on('log', function (data) {
     web.emit('log', data)
   })
@@ -134,21 +141,20 @@ slave.on('connection', function (socket) {
   web.emit('slave_status', 1)
 })
 
+module.exports.emitGpioEvent = function (pin, status) {
+  web.emit('gpio', { from: 'master', pin: pin, status: status })
+}
+
 module.exports.setup = function (server) {
   io.attach(server)
+}
 
-  gpioctrl.LED400.on('on', function () {
-    web.emit('gpio', { from: 'master', pin: 'LED400', status: 1 })
-  })
-  gpioctrl.LED400.on('off', function () {
-    web.emit('gpio', { from: 'master', pin: 'LED400', status: 0 })
-  })
-  gpioctrl.LED401.on('on', function () {
-    web.emit('gpio', { from: 'master', pin: 'LED401', status: 1 })
-  })
-  gpioctrl.LED401.on('off', function () {
-    web.emit('gpio', { from: 'master', pin: 'LED401', status: 0 })
-  })
+module.exports.setFakeGpioHandler = function (handler) {
+  fakeGpioHandler = handler
+}
+
+module.exports.setSlaveGpioHandler = function (handler) {
+  slaveGpioHandler = handler
 }
 
 module.exports.sendLog = sendLog
