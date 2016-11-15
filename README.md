@@ -15,7 +15,7 @@ ARTIK Cloud and ARTIK Module Demo
 - Hue Bridge + Hue Bulb
 - ipTime A3004NS-d (Wireless router supporting Android phone usb tethering)
 - Bluetooth Speaker
-- Samsung Smartcam
+- Samsung Smartcam SNH-P6410BN
 
 #### Software - Initial setup
 - Install dependency packages to each ARTIK 710 boards
@@ -92,7 +92,7 @@ pactl set-card-profile 1 a2dp_sink
 ##### WeMo switch setup
 
 1. Install WeMo app on your smartphone
-1. Wifi connect to WeMo (WeMo AP)
+1. Wi-Fi connect to WeMo (WeMo AP)
 1. Run WeMo application
 1. Setup WeMo to use ipTime AP
 
@@ -102,11 +102,12 @@ pactl set-card-profile 1 a2dp_sink
 1. Add Hue Bridge on Hue app
 1. Add Hue Bulb to Hue Bridge
 
-##### Samsung Smartcamera
+##### Samsung Smartcam setup
 
 1. https://www.samsungsmartcam.com/
 1. Register your account
-1. Register the camera and Setup id/password to 'admin' / '1234'
+1. Register the SNH-P6410BN camera to your account
+1. Setup camera id/password to 'admin' / '1234'
 
 ### Installing
 
