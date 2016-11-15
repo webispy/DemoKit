@@ -72,7 +72,8 @@ ipc.setWemoHandler({
 const rtspservice = {
   command: '/usr/local/bin/test-launch',
   args: [
-    '( v4l2src device=/dev/video6 ! video/x-raw,format=I420,framerate=15/1,width=1280,height=720 ! nxvideoenc ! rtph264pay name=pay0 )',
+    // '( v4l2src device=/dev/video6 ! video/x-raw,format=I420,framerate=15/1,width=1280,height=720 ! nxvideoenc ! rtph264pay name=pay0 )',
+    '(camerasrc camera-crop-width=1280 camera-crop-height=720 framerate=15/1 ! nxvideoenc ! rtph264pay name=pay0 )',
     '-p',
     '8554'
   ],
