@@ -2,7 +2,9 @@
   "name": "DemoKit",
   "version": "0.0.0",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": {
     "name": "Inho Oh",
@@ -14,12 +16,12 @@
     "body-parser": "~1.17.1",
     "child-process-promise": "^2.1.3",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
+    "debug": "~2.6.7",
     "ejs": "~2.5.5",
     "express": "~4.15.2",
     "http-message-parser": "0.0.23",
     "mdns": "^2.3.3",
-    "morgan": "~1.7.0",
+    "morgan": "~1.8.2",
     "mplayer": "^2.1.0",
     "mqtt": "^2.0.1",
     "node-hue-api": "^2.3.0",
@@ -31,10 +33,12 @@
     "passport-oauth2-refresh": "^1.0.0",
     "pwm": "0.0.3",
     "request": "^2.75.0",
-    "serve-favicon": "~2.3.0",
-    "socket.io": "^1.4.8",
-    "socket.io-client": "^1.5.0",
+    "serve-favicon": "~2.4.3",
+    "socket.io": "^2.0.0",
+    "socket.io-client": "^2.0.0",
     "websocket": "^1.0.23",
-    "wemo": "^0.2.1"
-  }
+    "wemo": "^0.2.1",
+    "snyk": "^1.30.1"
+  },
+  "snyk": true
 }
