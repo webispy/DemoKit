@@ -21,7 +21,7 @@
     "express": "~4.15.2",
     "http-message-parser": "0.0.23",
     "mdns": "^2.3.3",
-    "morgan": "~1.8.2",
+    "morgan": "~1.9.1",
     "mplayer": "^2.1.0",
     "mqtt": "^2.0.1",
     "node-hue-api": "^2.3.0",
