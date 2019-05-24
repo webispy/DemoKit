@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
+version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -12,3 +12,6 @@ patch:
         patched: '2017-05-26T08:07:03.838Z'
     - socket.io-client > debug > ms:
         patched: '2017-05-26T08:07:03.838Z'
+  SNYK-JS-AXIOS-174505:
+    - node-hue-api > axios:
+        patched: '2019-05-24T02:04:34.842Z'
